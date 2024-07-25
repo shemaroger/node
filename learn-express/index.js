@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const blogRoutes = require('./routes');
 
-// Initialize express app
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -12,11 +11,6 @@ app.use(bodyParser.json());
 
 // Routes
 app.use('/api/blogs', blogRoutes);
-
-// Define a root route
-app.get('/', (req, res) => {
-  res.send('Welcome to the Blog API!');
-});
 
 // Connect to MongoDB
 mongoose.connect('mongodb://localhost:27017/blogDB', {

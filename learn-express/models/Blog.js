@@ -30,7 +30,8 @@ const blogSchema = new mongoose.Schema({
     required: true
   },
   image: {
-    type: String // URL of the image
+    url: String,
+    public_id: String
   },
   comments: [commentSchema],
   likes: {
