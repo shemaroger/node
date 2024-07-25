@@ -1,65 +1,80 @@
-const express = require('express');
-const router = express.Router();
-const Blog = require('./models/Blog'); // Adjust the path as necessary
+// const express = require('express');
+// const router = express.Router();
+// const multer = require('multer');
+// const { upload } = require('../config/cloudinary'); // Adjust the path if needed
+// const Blog = require('../models/blog'); // Adjust the path to your Blog model
 
-// Create a new blog
-router.post('/', async (req, res) => {
-  try {
-    const blog = new Blog(req.body);
-    await blog.save();
-    res.status(201).send(blog);
-  } catch (error) {
-    res.status(400).send(error);
-  }
-});
+// // Upload image and create blog
+// router.post('/', upload.single('image'), async (req, res) => {
+//   try {
+//     const { title, content, author } = req.body;
+//     const image = req.file ? {
+//       url: req.file.path,
+//       public_id: req.file.filename
+//     } : {};
 
-// Get all blogs
-router.get('/', async (req, res) => {
-  try {
-    const blogs = await Blog.find();
-    res.status(200).send(blogs);
-  } catch (error) {
-    res.status(500).send(error);
-  }
-});
+//     const blog = new Blog({
+//       title,
+//       content,
+//       author,
+//       image
+//     });
 
-// Get a blog by ID
-router.get('/:id', async (req, res) => {
-  try {
-    const blog = await Blog.findById(req.params.id);
-    if (!blog) {
-      return res.status(404).send();
-    }
-    res.status(200).send(blog);
-  } catch (error) {
-    res.status(500).send(error);
-  }
-});
+//     await blog.save();
+//     res.status(201).json(blog);
+//   } catch (error) {
+//     res.status(400).json({ message: error.message });
+//   }
+// });
 
-// Update a blog by ID
-router.patch('/:id', async (req, res) => {
-  try {
-    const blog = await Blog.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
-    if (!blog) {
-      return res.status(404).send();
-    }
-    res.status(200).send(blog);
-  } catch (error) {
-    res.status(400).send(error);
-  }
-});
+// // Get all blogs
+// router.get('/', async (req, res) => {
+//   try {
+//     const blogs = await Blog.find();
+//     res.status(200).json(blogs);
+//   } catch (error) {
+//     res.status(400).json({ message: error.message });
+//   }
+// });
 
-// Delete a blog by ID
-router.delete('/:id', async (req, res) => {
-  try {
-    const blog = await Blog.findByIdAndDelete(req.params.id);
-    if (!blog) {
-      return res.status(404).send();
-    }
-    res.status(200).send(blog);
-  } catch (error) {
-    res.status(500).send(error);
-  }
-});
+// // Get a specific blog by ID
+// router.get('/:id', async (req, res) => {
+//   try {
+//     const blog = await Blog.findById(req.params.id);
+//     if (!blog) {
+//       return res.status(404).json({ message: 'Blog not found' });
+//     }
+//     res.status(200).json(blog);
+//   } catch (error) {
+//     res.status(400).json({ message: error.message });
+//   }
+// });
 
-module.exports = router;
+// // Update a blog by ID
+// router.put('/:id', async (req, res) => {
+//   try {
+//     const { title, content, author } = req.body;
+//     const blog = await Blog.findByIdAndUpdate(req.params.id, { title, content, author }, { new: true });
+//     if (!blog) {
+//       return res.status(404).json({ message: 'Blog not found' });
+//     }
+//     res.status(200).json(blog);
+//   } catch (error) {
+//     res.status(400).json({ message: error.message });
+//   }
+// });
+
+// // Delete a blog by ID
+// router.delete('/:id', async (req, res) => {
+//   try {
+//     const blog = await Blog.findByIdAndDelete(req.params.id);
+//     if (!blog) {
+//       return res.status(404).json({ message: 'Blog not found' });
+//     }
+//     res.status(200).json({ message: 'Blog deleted successfully' });
+//   } catch (error) {
+//     res.status(400).json({ message: error.message });
+//   }
+// });
+
+// module.exports = router;
